@@ -25,6 +25,7 @@ macro(buildem_boost_recipe )
 	set(Boost_TOOLSET_MAP_1600 10.0)
 	set(Boost_TOOLSET_MAP_1700 11.0)
 	set(Boost_TOOLSET_MAP_1800 12.0)
+	set(Boost_TOOLSET_MAP_1900 14.0)
 	
 	set(Boost_TOOLSET msvc-${Boost_TOOLSET_MAP_${MSVC_VERSION}})
 	set(Boost_LINK static)
