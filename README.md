@@ -5,18 +5,20 @@ Using this project will (hopefully) make building and installation of Caffe on W
 
 ## Building Caffe with Caffe-Builder
 ### Get the Prerequisites
-* CMake (tested with 3.2)
-* Visual Studio (tested with 2013 in 64 bit mode)
+* CMake (tested with 3.4.0-rc3)
+* Visual Studio (tested with 2015 in 64 bit mode)
 * Git
 * CUDA (tested with 7.0) for GPU support
 
 ### Clone this repository:    
-    cmd> git clone https://github.com/willyd/caffe-builder.git caffe-builder
+    cmd> git clone https://github.com/lltcggie/caffe-builder.git caffe-builder
         
 ### Create a build directory and configure CMake to build Caffe-Builder inside:
     cmd> md ..\build
     cmd> cd ..\build
     cmd> cmake -G "<your generator>" ..\caffe-builder
+    
+    "<your generator>" ex: "Visual Studio 14 2015 Win64"
     
 CMake will download all the sources and files required to compile Caffe and its dependencies to the folder build\DownloadCache. This can take some time.
     
