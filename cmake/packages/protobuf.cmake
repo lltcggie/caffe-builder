@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/google/protobuf.git"
-                         GIT_TAG v3.0.0-beta-1
+                         GIT_TAG v3.0.0-beta-1-bzl-fix
                          SOURCE_DIR protobuf_SOURCE_DIR
                          DIR_NAME protobuf)
 
@@ -21,6 +21,7 @@ buildem_download_package(GIT_REPOSITORY "https://github.com/google/googletest.gi
 
 set(protobuf_CMAKE_ARGS
     -DBUILD_SHARED_LIBS=OFF
+    -Dprotobuf_BUILD_TESTS=OFF
     )
     
 buildem_cmake_recipe(NAME protobuf
