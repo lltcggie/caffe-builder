@@ -2,15 +2,28 @@ include(buildem_status)
 include(buildem_download_package)
 include(buildem_cmake_recipe)
 
-buildem_download_package(GIT_REPOSITORY "https://github.com/willyd/protobuf.git"
-                         GIT_TAG cmake
-						 SOURCE_DIR protobuf_SOURCE_DIR)
+buildem_download_package(GIT_REPOSITORY "https://github.com/google/protobuf.git"
+                         GIT_TAG v3.0.0-beta-1
+                         SOURCE_DIR protobuf_SOURCE_DIR
+                         DIR_NAME protobuf)
+
+buildem_download_package(GIT_REPOSITORY "https://github.com/google/googlemock.git"
+                         GIT_TAG release-1.7.0
+                         SOURCE_DIR gmock_SOURCE_DIR
+                         DESTINATION ${BUILDEM_DOWNLOAD_CACHE}/protobuf
+                         DIR_NAME gmock)
+
+buildem_download_package(GIT_REPOSITORY "https://github.com/google/googletest.git"
+                         GIT_TAG release-1.7.0
+                         SOURCE_DIR gtest_SOURCE_DIR
+                         DESTINATION ${BUILDEM_DOWNLOAD_CACHE}/protobuf/gmock
+                         DIR_NAME gtest)
 
 set(protobuf_CMAKE_ARGS
     -DBUILD_SHARED_LIBS=OFF
     )
     
 buildem_cmake_recipe(NAME protobuf
-					 SOURCE_DIR ${protobuf_SOURCE_DIR}/vsprojects
+                     SOURCE_DIR ${protobuf_SOURCE_DIR}/cmake
                      CMAKE_ARGS ${protobuf_CMAKE_ARGS}
-					)
+                     )

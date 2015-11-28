@@ -2,7 +2,7 @@ include(CMakeParseArguments)
 
 macro(buildem_download_package)
 	set(options )	
-    set(oneValueArgs URL DESTINATION GIT_REPOSITORY GIT_TAG SOURCE_DIR)
+    set(oneValueArgs URL DESTINATION GIT_REPOSITORY GIT_TAG SOURCE_DIR DIR_NAME)
 	set(multiValueArgs )
 
     cmake_parse_arguments(buildem_dp_arg
@@ -101,8 +101,13 @@ macro(buildem_download_package)
                 endif()
             endif()
 
-			# get the git repo name
-			get_filename_component(_file_name_we ${buildem_dp_arg_GIT_REPOSITORY} NAME_WE)		
+			if(buildem_dp_arg_DIR_NAME)
+				set(_file_name_we ${buildem_dp_arg_DIR_NAME})
+			else()
+				# get the git repo name
+				get_filename_component(_file_name_we ${buildem_dp_arg_GIT_REPOSITORY} NAME_WE)		
+			endif()
+			
 			
 			if(NOT EXISTS ${buildem_dp_arg_DESTINATION}/${_file_name_we}/.git)
 				# clone the repo
