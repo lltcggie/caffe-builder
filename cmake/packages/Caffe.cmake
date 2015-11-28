@@ -2,7 +2,7 @@ include(buildem_status)
 include(buildem_download_package)
 include(buildem_cmake_recipe)
 
-buildem_download_package(GIT_REPOSITORY "https://github.com/willyd/caffe.git"
+buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/caffe.git"
                          GIT_TAG visualstudio
 						             SOURCE_DIR Caffe_SOURCE_DIR)
 
