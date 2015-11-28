@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_boost_recipe)
 
 
- buildem_download_package(URL "http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.7z"
+ buildem_download_package(URL "http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.7z"
 						  SOURCE_DIR Boost_SOURCE_DIR
                           )
 
