@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/gflags/gflags.git"
-                         GIT_TAG f0523f14a93cbb46fff9b318508aa1c6923158c7 #latest commit as of writing
+                         GIT_TAG 9db828953a1047c95bf5fb780c3c1f9453f806eb #latest commit as of writing
 						 SOURCE_DIR gflags_SOURCE_DIR)
 
 set(gflags_CMAKE_ARGS 
