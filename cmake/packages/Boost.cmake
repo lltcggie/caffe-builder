@@ -11,7 +11,7 @@ find_package(Boost COMPONENTS ${Boost_COMPONENTS} REQUIRED)
 option(BUILD_Boost "Build boost" ${Boost_FOUND})
 if(BUILD_Boost)
   message("Building Boost.")
-  buildem_download_package(URL "http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.7z"
+  buildem_download_package(URL "http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.7z"
                            SOURCE_DIR Boost_SOURCE_DIR
                            )
 
