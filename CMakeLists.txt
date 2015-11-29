@@ -10,25 +10,41 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 set(BUILDEM_DOWNLOAD_CACHE ${CMAKE_CURRENT_BINARY_DIR}/DownloadCache)
 
+option(CPU_ONLY  "Build Caffe without CUDA support" OFF)
+option(USE_CUDNN "Build Caffe with cuDNN library support" OFF)
+option(BUILD_python "Build Python wrapper" ON)
+option(BUILD_matlab "Build Matlab wrapper" OFF)
+option(BUILD_docs   "Build documentation" ON)
+option(BUILD_python_layer "Build the Caffe Python layer" ON)
+option(USE_OPENCV "Build with OpenCV support" ON)
+option(USE_LEVELDB "Build with levelDB" ON)
+option(USE_LMDB "Build with lmdb" ON)
+
+if(CPU_ONLY)
+	set(USE_CUDNN OFF)
+endif()
+if(NOT BUILD_python)
+	set(BUILD_python_layer OFF)
+endif()
+
 include(buildem_all)
 
 # order is important dependees go before dependers
 include(ZLIB)
-include(OpenCV) # depends on ZLIB
+if(USE_OPENCV)
+	include(OpenCV) # depends on ZLIB
+endif()
 include(HDF5) # depends on ZLIB
 include(Boost)
 include(gflags)
 include(glog) # depends (optionally) on gflags
-include(lmdb)
+if(USE_LMDB)
+	include(lmdb)
+endif()
+if(USE_LEVELDB)
+	include(leveldb) # depends on Boost
+endif()
 include(snappy)
-include(leveldb) # depends on Boost
 include(protobuf) 
 include(OpenBLAS) 
 include(Caffe) # depends on all the above except cvmatio
-
-
-
-
-
-
-

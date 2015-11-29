@@ -20,10 +20,14 @@ if(Boost_DOC_FOLDERS)
 	message(STATUS "Removing docs")
 	file(REMOVE_RECURSE ${Boost_DOC_FOLDERS} ${Boost_SOURCE_DIR}/doc)
 endif()
-    
+
+if(BUILD_python)
+	set(BOOST_BUILD_PYTHON_OPTION python)
+endif()
+
  buildem_boost_recipe(NAME Boost
 					  SOURCE_DIR ${Boost_SOURCE_DIR}
-                      COMPONENTS system thread filesystem date_time python regex
+                      COMPONENTS system thread filesystem date_time ${BOOST_BUILD_PYTHON_OPTION} regex
                       )
 
 
