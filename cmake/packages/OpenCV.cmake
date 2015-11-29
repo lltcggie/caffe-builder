@@ -34,6 +34,7 @@ set(OpenCV_CMAKE_ARGS
     # change according to your GPU
     -DCUDA_ARCH_BIN=5.2
     -DCUDA_ARCH_PTX=""
+    -DBUILD_WITH_STATIC_CRT=${USE_STATIC_RUNTIME_LINK}
     )
     
 buildem_cmake_recipe(NAME OpenCV

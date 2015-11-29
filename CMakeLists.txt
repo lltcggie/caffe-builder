@@ -10,6 +10,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 set(BUILDEM_DOWNLOAD_CACHE ${CMAKE_CURRENT_BINARY_DIR}/DownloadCache)
 
+option(USE_STATIC_RUNTIME_LINK "MSVC Runtime static link" OFF)
+
 option(CPU_ONLY  "Build Caffe without CUDA support" OFF)
 option(USE_CUDNN "Build Caffe with cuDNN library support" OFF)
 option(BUILD_python "Build Python wrapper" ON)

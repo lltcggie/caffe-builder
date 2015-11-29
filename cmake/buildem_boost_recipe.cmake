@@ -4,7 +4,7 @@ include(buildem_status)
 
 macro(buildem_boost_recipe )
     set(options )	
-    set(oneValueArgs NAME SOURCE_DIR)
+    set(oneValueArgs NAME SOURCE_DIR RUNTIME_LINK)
 	set(multiValueArgs DEPENDS COMPONENTS)
 	
 	cmake_parse_arguments(buildem_br_arg
@@ -29,7 +29,11 @@ macro(buildem_boost_recipe )
 	
 	set(Boost_TOOLSET msvc-${Boost_TOOLSET_MAP_${MSVC_VERSION}})
 	set(Boost_LINK static)
-	
+
+	if(NOT RUNTIME_LINK)
+		set(Boost_RUNTIME_LINK shared)
+	endif()
+
 	if(CMAKE_CL_64)
 		set(Boost_ADDRESS_MODEL 64)
 	else()
@@ -38,7 +42,7 @@ macro(buildem_boost_recipe )
 	
     set(_binary_dir ${CMAKE_CURRENT_BINARY_DIR}/Boost-prefix/src/Boost-build)
 	file(TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX} _prefix)
-	set(Boost_OPTS threading=multi variant=debug,release runtime-link=shared link=${Boost_LINK} toolset=${Boost_TOOLSET} address-model=${Boost_ADDRESS_MODEL} install --prefix=${_prefix} --build-dir=${_binary_dir})
+	set(Boost_OPTS threading=multi variant=debug,release runtime-link=${Boost_RUNTIME_LINK} link=${Boost_LINK} toolset=${Boost_TOOLSET} address-model=${Boost_ADDRESS_MODEL} install --prefix=${_prefix} --build-dir=${_binary_dir})
 	
 	if(buildem_br_arg_COMPONENTS)
 		foreach(_component ${buildem_br_arg_COMPONENTS})

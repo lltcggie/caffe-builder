@@ -25,9 +25,16 @@ if(BUILD_python)
 	set(BOOST_BUILD_PYTHON_OPTION python)
 endif()
 
+if(USE_STATIC_RUNTIME_LINK)
+	set(BOOST_RUNTIME_LINK static)
+else()
+	set(BOOST_RUNTIME_LINK shared)
+endif()
+
  buildem_boost_recipe(NAME Boost
 					  SOURCE_DIR ${Boost_SOURCE_DIR}
                       COMPONENTS system thread filesystem date_time ${BOOST_BUILD_PYTHON_OPTION} regex
+                      RUNTIME_LINK ${BOOST_RUNTIME_LINK}
                       )
 
 

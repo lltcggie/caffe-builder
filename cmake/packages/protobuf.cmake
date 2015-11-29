@@ -22,6 +22,7 @@ buildem_download_package(GIT_REPOSITORY "https://github.com/google/googletest.gi
 set(protobuf_CMAKE_ARGS
     -DBUILD_SHARED_LIBS=OFF
     -Dprotobuf_BUILD_TESTS=OFF
+    -Dprotobuf_MSVC_STATIC_RUNTIME=${USE_STATIC_RUNTIME_LINK}
     )
     
 buildem_cmake_recipe(NAME protobuf
