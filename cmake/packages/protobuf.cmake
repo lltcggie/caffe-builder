@@ -2,8 +2,8 @@ include(buildem_status)
 include(buildem_download_package)
 include(buildem_cmake_recipe)
 
-buildem_download_package(GIT_REPOSITORY "https://github.com/google/protobuf.git"
-                         GIT_TAG v3.0.0-beta-1-bzl-fix
+buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/protobuf.git"
+                         GIT_TAG cmake
                          SOURCE_DIR protobuf_SOURCE_DIR
                          DIR_NAME protobuf)
 
