@@ -4,12 +4,14 @@ include(buildem_cmake_recipe)
 
 option(BUILD_OPENCV_3 "Build OpenCV 3.x instead of 2.4.x" ON)
 if(BUILD_OPENCV_3)
-    buildem_download_package(URL "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/3.0.0/opencv-3.0.0.zip"
-						     SOURCE_DIR OpenCV_SOURCE_DIR
+    buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/opencv.git"
+							GIT_TAG cmake_3.0.0
+							SOURCE_DIR OpenCV_SOURCE_DIR
                              )
 else()
-    buildem_download_package(URL "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.11/opencv-2.4.11.zip"
-						     SOURCE_DIR OpenCV_SOURCE_DIR
+    buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/opencv.git"
+							GIT_TAG cmake_2.4.12.3
+							SOURCE_DIR OpenCV_SOURCE_DIR
                              )
 endif()
 
