@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/zlib.git"
-                         GIT_TAG cmake #latest commit as of writing
+                         GIT_BRANCH cmake
 						 SOURCE_DIR ZLIB_SOURCE_DIR)
 
 set(ZLIB_CMAKE_ARGS 

@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/willyd/lmdb.git"
-                         GIT_TAG cmake
+                         GIT_BRANCH cmake
 						 SOURCE_DIR lmdb_SOURCE_DIR)
 
 set(lmdb_CMAKE_ARGS 

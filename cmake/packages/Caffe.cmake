@@ -3,14 +3,14 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/caffe.git"
-						GIT_TAG visualstudio
+						GIT_BRANCH visualstudio
 						SOURCE_DIR Caffe_SOURCE_DIR)
 
 set(Caffe_CMAKE_ARGS
 	-DBUILD_SHARED_LIBS:BOOL=OFF
 	-DBoost_USE_STATIC_LIBS=ON
 	-DBoost_USE_MULTITHREAD=ON
-	-DBoost_USE_STATIC_RUNTIME=OFF
+	-DBoost_USE_STATIC_RUNTIME=${USE_STATIC_RUNTIME_LINK}
 	-DOpenCV_STATIC:BOOL=ON
 	-DBLAS:STRING=Open
 	-DPROTOBUF_SRC_ROOT_FOLDER:PATH=${CMAKE_INSTALL_PREFIX}
@@ -24,6 +24,7 @@ set(Caffe_CMAKE_ARGS
 	-DUSE_OPENCV=${USE_OPENCV}
 	-DUSE_LEVELDB=${USE_LEVELDB}
 	-DUSE_LMDB=${USE_LMDB}
+	-DBUILD_WITH_STATIC_CRT=${USE_STATIC_RUNTIME_LINK}
 	)
 
 set(depens_lib gflags glog Boost HDF5 snappy OpenBLAS protobuf)

@@ -2,7 +2,7 @@ include(CMakeParseArguments)
 
 macro(buildem_download_package)
 	set(options )	
-    set(oneValueArgs URL DESTINATION GIT_REPOSITORY GIT_TAG SOURCE_DIR DIR_NAME)
+    set(oneValueArgs URL DESTINATION GIT_REPOSITORY GIT_TAG GIT_BRANCH SOURCE_DIR DIR_NAME)
 	set(multiValueArgs )
 
     cmake_parse_arguments(buildem_dp_arg
@@ -125,6 +125,9 @@ macro(buildem_download_package)
 			# checkout the tag if any
 			if(buildem_dp_arg_GIT_TAG)
 				execute_process(COMMAND ${GIT_EXECUTABLE} checkout ${buildem_dp_arg_GIT_TAG}
+								WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+			elseif(buildem_dp_arg_GIT_BRANCH)
+				execute_process(COMMAND ${GIT_EXECUTABLE} checkout -b ${buildem_dp_arg_GIT_BRANCH} origin/${buildem_dp_arg_GIT_BRANCH}
 								WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
 			endif()
 			

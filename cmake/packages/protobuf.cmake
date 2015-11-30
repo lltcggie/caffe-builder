@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/protobuf.git"
-                         GIT_TAG cmake
+                         GIT_BRANCH cmake
                          SOURCE_DIR protobuf_SOURCE_DIR
                          DIR_NAME protobuf)
 

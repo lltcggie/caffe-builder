@@ -33,20 +33,20 @@ include(buildem_all)
 
 # order is important dependees go before dependers
 include(ZLIB)
-if(USE_OPENCV)
-	include(OpenCV) # depends on ZLIB
-endif()
 include(HDF5) # depends on ZLIB
-include(Boost)
+include(snappy)
+include(protobuf) 
+include(OpenBLAS) 
 include(gflags)
 include(glog) # depends (optionally) on gflags
+include(Boost)
 if(USE_LMDB)
 	include(lmdb)
 endif()
 if(USE_LEVELDB)
 	include(leveldb) # depends on Boost
 endif()
-include(snappy)
-include(protobuf) 
-include(OpenBLAS) 
+if(USE_OPENCV)
+	include(OpenCV) # depends on ZLIB
+endif()
 include(Caffe) # depends on all the above except cvmatio
