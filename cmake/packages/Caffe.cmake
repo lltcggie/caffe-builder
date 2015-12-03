@@ -26,14 +26,16 @@ set(Caffe_CMAKE_ARGS
 	-DUSE_LEVELDB=${USE_LEVELDB}
 	-DUSE_LMDB=${USE_LMDB}
 	-DBUILD_WITH_STATIC_CRT=${USE_STATIC_RUNTIME_LINK}
+	-DCMAKE_LIBRARY_ARCHITECTURE=${CMAKE_LIBRARY_ARCHITECTURE}
 	)
 
-set(depens_lib gflags glog Boost HDF5 snappy OpenBLAS protobuf)
+set(depens_lib gflags glog Boost HDF5 OpenBLAS protobuf)
 
 if(USE_OPENCV)
 	set(depens_lib ${depens_lib} OpenCV)
 endif()
 if(USE_LEVELDB)
+	set(depens_lib ${depens_lib} snappy)
 	set(depens_lib ${depens_lib} leveldb)
 endif()
 if(USE_LMDB)

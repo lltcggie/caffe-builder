@@ -30,12 +30,19 @@ if(NOT BUILD_python)
 	set(BUILD_python_layer OFF)
 endif()
 
+if(MSVC)
+  if(CMAKE_CL_64)
+    set(CMAKE_LIBRARY_ARCHITECTURE x64)
+  else()
+    set(CMAKE_LIBRARY_ARCHITECTURE x86)
+  endif()
+endif()
+
 include(buildem_all)
 
 # order is important dependees go before dependers
 include(ZLIB)
 include(HDF5) # depends on ZLIB
-include(snappy)
 include(protobuf) 
 include(OpenBLAS) 
 include(gflags)
@@ -45,6 +52,7 @@ if(USE_LMDB)
 	include(lmdb)
 endif()
 if(USE_LEVELDB)
+	include(snappy)
 	include(leveldb) # depends on Boost
 endif()
 if(USE_OPENCV)
