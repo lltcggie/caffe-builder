@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.0 FATAL_ERROR)
 
 set (CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "Path where to install binaries")
+set (CUDNN_ROOT "${CMAKE_CURRENT_LIST_DIR}/cudnn" CACHE PATH "Path where cudnn liblary")
 
 project (caffe-builder)
 

@@ -17,6 +17,7 @@ set(Caffe_CMAKE_ARGS
 	-DOpenCV_DIR:PATH=${CMAKE_INSTALL_PREFIX}
 	-DCPU_ONLY=${CPU_ONLY}
 	-DUSE_CUDNN=${USE_CUDNN}
+	-DCUDNN_ROOT=${CUDNN_ROOT}
 	-DBUILD_python=${BUILD_python}
 	-DBUILD_matlab=${BUILD_matlab}
 	-DBUILD_docs=${BUILD_docs}
