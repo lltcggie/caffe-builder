@@ -12,7 +12,7 @@ set(Caffe_CMAKE_ARGS
 	-DBoost_USE_MULTITHREAD=ON
 	-DBoost_USE_STATIC_RUNTIME=${USE_STATIC_RUNTIME_LINK}
 	-DOpenCV_STATIC:BOOL=ON
-	-DBLAS:STRING=Open
+	-DBLAS:STRING=${BLAS}
 	-DPROTOBUF_SRC_ROOT_FOLDER:PATH=${CMAKE_INSTALL_PREFIX}
 	-DOpenCV_DIR:PATH=${CMAKE_INSTALL_PREFIX}
 	-DCPU_ONLY=${CPU_ONLY}
@@ -27,9 +27,12 @@ set(Caffe_CMAKE_ARGS
 	-DUSE_LMDB=${USE_LMDB}
 	-DBUILD_WITH_STATIC_CRT=${USE_STATIC_RUNTIME_LINK}
 	-DCMAKE_LIBRARY_ARCHITECTURE=${CMAKE_LIBRARY_ARCHITECTURE}
+	-DMKL_USE_SINGLE_DYNAMIC_LIBRARY=${MKL_USE_SINGLE_DYNAMIC_LIBRARY}
+	-DMKL_USE_STATIC_LIBS=${MKL_USE_STATIC_LIBS}
+	-DMKL_MULTI_THREADED=${MKL_MULTI_THREADED}
 	)
 
-set(depens_lib gflags glog Boost HDF5 OpenBLAS protobuf)
+set(depens_lib gflags glog Boost HDF5 protobuf)
 
 if(USE_OPENCV)
 	set(depens_lib ${depens_lib} OpenCV)
@@ -40,6 +43,9 @@ if(USE_LEVELDB)
 endif()
 if(USE_LMDB)
 	set(depens_lib ${depens_lib} lmdb)
+endif()
+if(${BLAS} STREQUAL Open OR ${BLAS} STREQUAL open OR ${BLAS} STREQUAL OPEN)
+	set(depens_lib ${depens_lib} OpenBLAS)
 endif()
 
 buildem_cmake_recipe(NAME Caffe

@@ -22,6 +22,10 @@ option(BUILD_python_layer "Build the Caffe Python layer" ON)
 option(USE_OPENCV "Build with OpenCV support" ON)
 option(USE_LEVELDB "Build with levelDB" ON)
 option(USE_LMDB "Build with lmdb" ON)
+option(BLAS "Selected BLAS library" "Open")
+option(MKL_USE_SINGLE_DYNAMIC_LIBRARY "Use single dynamic library interface" ON)
+option(MKL_USE_STATIC_LIBS "Use static libraries" OFF)
+option(MKL_MULTI_THREADED  "Use multi-threading" ON)
 
 if(CPU_ONLY)
 	set(USE_CUDNN OFF)
@@ -44,7 +48,6 @@ include(buildem_all)
 include(ZLIB)
 include(HDF5) # depends on ZLIB
 include(protobuf) 
-include(OpenBLAS) 
 include(gflags)
 include(glog) # depends (optionally) on gflags
 include(Boost)
@@ -57,6 +60,9 @@ if(USE_LEVELDB)
 endif()
 if(USE_OPENCV)
 	include(OpenCV) # depends on ZLIB
+endif()
+if(${BLAS} STREQUAL Open OR ${BLAS} STREQUAL open OR ${BLAS} STREQUAL OPEN)
+	include(OpenBLAS) 
 endif()
 include(Caffe) # depends on all the above except cvmatio
 if(USE_CUDNN)
