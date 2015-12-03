@@ -59,3 +59,6 @@ if(USE_OPENCV)
 	include(OpenCV) # depends on ZLIB
 endif()
 include(Caffe) # depends on all the above except cvmatio
+if(USE_CUDNN)
+  include("${CUDNN_ROOT}/cuDNNInstall.cmake")
+endif()

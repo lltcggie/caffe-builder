@@ -1,0 +1,32 @@
+cmake_minimum_required (VERSION 3.0 FATAL_ERROR)
+
+if(NOT CUDNN_ROOT)
+  set(CUDNN_ROOT ${CMAKE_CURRENT_LIST_DIR})
+endif()
+
+if(USE_CUDNN)
+  # Install cuDNN Files
+  set(CUDNN_BIN_DIR "${CUDNN_ROOT}/bin")
+  file(GLOB CUDNN_BIN_FILES "${CUDNN_BIN_DIR}/*.dll")
+
+  set(CUDNN_INCLUDE_DIR "${CUDNN_ROOT}/include")
+  file(GLOB CUDNN_INCLUDE_FILES "${CUDNN_INCLUDE_DIR}/*.h")
+
+  set(CUDNN_LIBLARY_DIR "${CUDNN_ROOT}/lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+  file(GLOB CUDNN_LIBLARY_FILES "${CUDNN_LIBLARY_DIR}/*.lib")
+
+  if(CUDNN_BIN_FILES)
+    file(INSTALL ${CUDNN_BIN_FILES}
+            DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+  endif()
+
+  if(CUDNN_INCLUDE_FILES)
+    file(INSTALL ${CUDNN_INCLUDE_FILES}
+            DESTINATION "${CMAKE_INSTALL_PREFIX}/include")
+  endif()
+
+  if(CUDNN_LIBLARY_FILES)
+    file(INSTALL ${CUDNN_LIBLARY_FILES}
+            DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+  endif()
+endif()
