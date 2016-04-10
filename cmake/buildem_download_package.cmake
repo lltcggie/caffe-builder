@@ -120,16 +120,35 @@ macro(buildem_download_package)
 				if(NOT ${_result} EQUAL 0)
 					message(FATAL_ERROR "Error cloning git repository ${_result}\n${_output}\n${_error}")
 				endif()
+				
+				# checkout the tag if any
+				if(buildem_dp_arg_GIT_TAG)
+					execute_process(COMMAND ${GIT_EXECUTABLE} checkout refs/tags/${buildem_dp_arg_GIT_TAG}
+									WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+				elseif(buildem_dp_arg_GIT_BRANCH)
+					execute_process(COMMAND ${GIT_EXECUTABLE} checkout -b ${buildem_dp_arg_GIT_BRANCH} origin/${buildem_dp_arg_GIT_BRANCH}
+									WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+				endif()
+			else()
+				execute_process(COMMAND ${GIT_EXECUTABLE} fetch
+								WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+				if(NOT ${_result} EQUAL 0)
+					message(FATAL_ERROR "Error cloning git repository ${_result}\n${_output}\n${_error}")
+				endif()
+				
+				# checkout the tag if any
+				if(buildem_dp_arg_GIT_TAG)
+					execute_process(COMMAND ${GIT_EXECUTABLE} checkout refs/tags/${buildem_dp_arg_GIT_TAG}
+									WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+				elseif(buildem_dp_arg_GIT_BRANCH)
+					execute_process(COMMAND ${GIT_EXECUTABLE} branch ${buildem_dp_arg_GIT_BRANCH} origin/${buildem_dp_arg_GIT_BRANCH}
+									WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+					execute_process(COMMAND ${GIT_EXECUTABLE} checkout ${buildem_dp_arg_GIT_BRANCH}
+									WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
+				endif()
 			endif()
 			
-			# checkout the tag if any
-			if(buildem_dp_arg_GIT_TAG)
-				execute_process(COMMAND ${GIT_EXECUTABLE} checkout ${buildem_dp_arg_GIT_TAG}
-								WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
-			elseif(buildem_dp_arg_GIT_BRANCH)
-				execute_process(COMMAND ${GIT_EXECUTABLE} checkout -b ${buildem_dp_arg_GIT_BRANCH} origin/${buildem_dp_arg_GIT_BRANCH}
-								WORKING_DIRECTORY "${buildem_dp_arg_DESTINATION}/${_file_name_we}")
-			endif()
+
 			
 			# set output variable for caller
 			if(buildem_dp_arg_SOURCE_DIR)
