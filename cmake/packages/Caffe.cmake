@@ -3,7 +3,7 @@ include(buildem_download_package)
 include(buildem_cmake_recipe)
 
 buildem_download_package(GIT_REPOSITORY "https://github.com/lltcggie/caffe.git"
-						GIT_BRANCH visualstudio
+						GIT_BRANCH nv-vs2013
 						SOURCE_DIR Caffe_SOURCE_DIR)
 
 set(Caffe_CMAKE_ARGS
