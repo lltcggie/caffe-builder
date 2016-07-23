@@ -32,8 +32,9 @@ else()
 endif()
 
  buildem_boost_recipe(NAME Boost
-					  SOURCE_DIR ${Boost_SOURCE_DIR}
-                      COMPONENTS system thread filesystem date_time ${BOOST_BUILD_PYTHON_OPTION} regex
+                      DEPENDS ZLIB
+                      SOURCE_DIR ${Boost_SOURCE_DIR}
+                      COMPONENTS system thread filesystem date_time iostreams ${BOOST_BUILD_PYTHON_OPTION} regex
                       RUNTIME_LINK ${BOOST_RUNTIME_LINK}
                       )
 
