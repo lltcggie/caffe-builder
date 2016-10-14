@@ -19,7 +19,7 @@ macro(buildem_cmake_recipe )
 							${options} ${oneValueArgs} ${multiValueArgs})
     
     message("${CMAKE_MODULE_PATH}")
-	set(_default_cmake_args -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX} -DCMAKE_MODULE_PATH:PATH=a;a;${CMAKE_MODULE_PATH})
+	set(_default_cmake_args -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX} -DCMAKE_MODULE_PATH:PATH=;${CMAKE_MODULE_PATH})
 	set(_name ${buildem_cr_arg_NAME})
 	set(_source_dir ${buildem_cr_arg_SOURCE_DIR})
     externalproject_add(${_name}
