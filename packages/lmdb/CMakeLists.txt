@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.31.6)
 
 project(lmdb VERSION 0.9.70)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)

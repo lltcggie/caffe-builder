@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.31.6)
 
 project(opencv VERSION 3.1.0)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)

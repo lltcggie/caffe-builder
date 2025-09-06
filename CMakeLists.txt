@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required (VERSION 3.31.6 FATAL_ERROR)
 
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/libraries" CACHE PATH "Path where to install binaries")
 
@@ -20,7 +20,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(ProcessorCount)
 ProcessorCount(NUMBER_OF_PROCESSORS)
 
-find_package(PythonInterp)
+find_package (Python COMPONENTS Interpreter)
 if(NOT PYTHON_EXECUTABLE)
     message(WARNING "Cannot make packages relocatable since python was not found. Set PYTHON_EXECUTABLE to your python path.")
 endif()

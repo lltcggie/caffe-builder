@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.31.6)
 
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/lmdb.h" VERSION_HEADER)
 string(REGEX MATCH ".*MDB_VERSION_MAJOR[ \t]+([0-9])" MAJOR_VERSION_MATCH "${VERSION_HEADER}")

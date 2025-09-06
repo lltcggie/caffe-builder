@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.31.6)
 
-project(protobuf VERSION 3.1.0)
+project(protobuf VERSION 32.0.0)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
 option(BUILD_${PROJECT_NAME_UPPER} "Build ${PROJECT_NAME}" ${CB_BUILD_ALL})
@@ -29,9 +29,9 @@ if(BUILD_${PROJECT_NAME_UPPER})
     set(${PROJECT_NAME_UPPER}_CONFIG
 "
 # ${PROJECT_NAME_UPPER} config
-set(${PROJECT_NAME_UPPER}_DIR \${CMAKE_CURRENT_LIST_DIR}/cmake CACHE PATH \"\")
-set(${PROJECT_NAME}_DIR \${CMAKE_CURRENT_LIST_DIR}/cmake CACHE PATH \"\")
-set(Protobuf_DIR \${CMAKE_CURRENT_LIST_DIR}/cmake CACHE PATH \"\")
+set(${PROJECT_NAME_UPPER}_DIR \${CMAKE_CURRENT_LIST_DIR} CACHE PATH \"\")
+set(${PROJECT_NAME}_DIR \${CMAKE_CURRENT_LIST_DIR} CACHE PATH \"\")
+set(Protobuf_DIR \${CMAKE_CURRENT_LIST_DIR} CACHE PATH \"\")
 set(protobuf_MODULE_COMPATIBLE ON CACHE BOOL \"\")
 "
     PARENT_SCOPE)
@@ -39,10 +39,9 @@ set(protobuf_MODULE_COMPATIBLE ON CACHE BOOL \"\")
     include(ExternalProject)
     ExternalProject_Add(
         ${PROJECT_NAME}_download
-        URL https://github.com/google/protobuf/archive/v3.1.0/protobuf-v3.1.0.tar.gz
-        URL_MD5 39d6a4fa549c0cce164aa3064b1492dc
+        URL https://github.com/protocolbuffers/protobuf/releases/download/v32.0/protobuf-32.0.tar.gz
+        URL_MD5 a0730ca44019c58538bb2f17e30a96ff
         DOWNLOAD_DIR ${CB_DOWNLOAD_DIR}
-        PATCH_COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/patches/type_traits.h src/google/protobuf/stubs/type_traits.h
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
         INSTALL_COMMAND ""
@@ -50,7 +49,7 @@ set(protobuf_MODULE_COMPATIBLE ON CACHE BOOL \"\")
     list(APPEND ${PROJECT_NAME}_targets ${PROJECT_NAME}_download)
 
     ExternalProject_Get_Property("${PROJECT_NAME}_download" SOURCE_DIR)
-    set(SOURCE_DIR ${SOURCE_DIR}/cmake)
+    set(SOURCE_DIR ${SOURCE_DIR})
 
     foreach(_config ${CB_BUILD_CONFIGURATION_TYPES})
         string(TOLOWER ${_config} _config_lower)

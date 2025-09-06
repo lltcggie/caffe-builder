@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.31.6)
 
 project(zlib VERSION 1.2.8)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
