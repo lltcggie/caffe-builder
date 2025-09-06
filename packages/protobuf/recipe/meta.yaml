@@ -2,7 +2,7 @@
 
 package:
     name: protobuf
-    version: 3.1.0{{ cfg.msvc_version_suffix }}
+    version: 3.31.16{{ cfg.msvc_version_suffix }}
 
 source:
     path: ../../../

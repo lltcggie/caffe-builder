@@ -28,6 +28,7 @@ cmake -G Ninja ^
       -D BUILD_OPENCV:BOOL=OFF ^
       -D BUILD_LEVELDB:BOOL=OFF ^
       -D BUILD_LMDB:BOOL=OFF ^
+      -D CB_BUILD_CONFIGURATION_TYPES=Release ^
       -D CMAKE_BUILD_TYPE:STRING=Release ^
       %~dp0
 :: build
